@@ -1,6 +1,7 @@
 package com.fastcampus.ch3;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 @Component
 class Car{
+    @Value("red")
     String color;
+    @Value("100")
     int oil;
     @Autowired Engine engine;
     @Autowired Door[] doors;

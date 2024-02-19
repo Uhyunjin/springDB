@@ -2,21 +2,16 @@ package com.fastcampus.ch3;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-
+@Component
 class Car{
     String color;
     int oil;
     Engine engine;
     Door[] doors;
 
-    public Car(String color, int oil, Engine engine, Door[] doors) {
-        this.color = color;
-        this.oil = oil;
-        this.engine = engine;
-        this.doors = doors;
-    }
     // xml의 constuctor-arg에서 사용
 
 
@@ -46,8 +41,9 @@ class Car{
                 '}';
     }
 }
-class Engine{}
-class Door{}
+
+@Component class Engine{}
+@Component class Door{}
 
 
 public class SpringDITest {
@@ -62,10 +58,10 @@ public class SpringDITest {
         Engine engine2 = (Engine) ac.getBean(Engine.class); //bytype
         Door door = (Door) ac.getBean("door");
 
-//        car.setColor("red");
-//        car.setOil(100);
-//        car.setEngine(engine);
-//        car.setDoors(new Door[]{ac.getBean("door", Door.class), ac.getBean("door", Door.class)});
+        car.setColor("red");
+        car.setOil(100);
+        car.setEngine(engine);
+        car.setDoors(new Door[]{ac.getBean("door", Door.class), ac.getBean("door", Door.class)});
         // car객체의 멤버 초기화
         // door는 항상 다른 객체가 생성되어야 하므로 prototype으로 설정
 

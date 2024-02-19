@@ -11,6 +11,15 @@ class Car{
     Engine engine;
     Door[] doors;
 
+    public Car(String color, int oil, Engine engine, Door[] doors) {
+        this.color = color;
+        this.oil = oil;
+        this.engine = engine;
+        this.doors = doors;
+    }
+    // xml의 constuctor-arg에서 사용
+
+
     public void setColor(String color) {
         this.color = color;
     }
@@ -45,7 +54,6 @@ public class SpringDITest {
     public static void main(String[] args) {
         ApplicationContext ac = new GenericXmlApplicationContext("config.xml");
         Car car = (Car)ac.getBean("car"); // byname
-        Car car3 = ac.getBean("car", Car.class); // byname, 타입정보를 매개변수로 넘길 수 있음
         // xml scope=prototype으로 설정하면 getBean마다 새로운 객체가 생성된다
         // 기본 설정은 singleton으로 하나만 생성됌
         

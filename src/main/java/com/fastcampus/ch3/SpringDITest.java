@@ -13,7 +13,7 @@ class Car{
     String color;
     @Value("100")
     int oil;
-    @Autowired Engine engine;
+    @Autowired Engine engine; //bytype
     @Autowired Door[] doors;
 
     // xml의 constuctor-arg에서 사용
@@ -62,7 +62,7 @@ public class SpringDITest {
         
 //        Car car2 = (Car)ac.getBean(Car.class); // bytype
 
-        Engine engine = (Engine) ac.getBean("superEngine"); //byname
+//        Engine engine = (Engine) ac.getBean("superEngine"); //byname
 
         //Engine engine = (Engine) ac.getBean(Engine.class); //bytype
         //Engine type이 3개라서 타입으로 주면 에러난다
@@ -77,6 +77,6 @@ public class SpringDITest {
         // door는 항상 다른 객체가 생성되어야 하므로 prototype으로 설정
 
         System.out.println("car = " + car);
-        System.out.println("engine = " + engine);
+//        System.out.println("engine = " + engine);
     }
 }

@@ -1,6 +1,7 @@
 package com.fastcampus.ch3;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
@@ -13,7 +14,9 @@ class Car{
     String color;
     @Value("100")
     int oil;
-    @Autowired Engine engine; //bytype
+    @Autowired
+    @Qualifier("superEngine") //여러개의 bean이 있을 경우 해당 bean 선택
+    Engine engine; //bytype 타입으로 먼저 검색 후 이름으로 구별한다
     @Autowired Door[] doors;
 
     // xml의 constuctor-arg에서 사용
@@ -46,8 +49,10 @@ class Car{
     }
 }
 
-@Component("engine") class Engine{}
+//@Component("engine")
+class Engine{}
 // <bean id="engine" class="com.fastcampus.ch3.Engine"/>과 똑같은 의미!!
+// component 태그를 제거하면 engine이 bean에서 삭제되고, autowired에서 supuer와 turbo중 일치하는 게 없어서 에러남
 @Component class SuperEngine extends Engine {}
 @Component class TurboEngine extends Engine {}
 @Component class Door{}

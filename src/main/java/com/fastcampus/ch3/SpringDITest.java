@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 @Component
 class Car{
@@ -14,8 +16,9 @@ class Car{
     String color;
     @Value("100")
     int oil;
-    @Autowired
-    @Qualifier("superEngine") //여러개의 bean이 있을 경우 해당 bean 선택
+    // @Autowired
+    //@Qualifier("superEngine") //여러개의 bean이 있을 경우 해당 bean 선택
+    @Resource(name = "superEngine") //byname
     Engine engine; //bytype 타입으로 먼저 검색 후 이름으로 구별한다
     @Autowired Door[] doors;
 

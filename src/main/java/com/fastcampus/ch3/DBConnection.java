@@ -22,5 +22,7 @@ public class DBConnection {
             String curDate = rs.getString(1);  // 읽어온 행의 첫번째 컬럼의 값을 String으로 읽어서 curDate에 저장
             System.out.println(curDate);       // 2022-01-11 13:53:00.0
         }
+        //마지막까지 읽으면 rs.next()=false가 되고 while문 탈출
+        //if문 써도 된다
     } // main()
 }
